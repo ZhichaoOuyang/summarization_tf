@@ -305,7 +305,7 @@ class MultiwayModel(BaseModel):
                                             dim_rep, in_vocab, out_vocab, layer, dropout, lr)
         self.layer = layer
         self.dropout = dropout
-        self.E = TreeEmbeddingLayer(dim_E, in_vocab)
+        self.E = TreeEmbeddingLayer(dim_E, in_vocab)   # in_vocab 是 code的vocab
         for i in range(layer):
             self.__setattr__("layer{}".format(i), ShidoTreeLSTMLayer(dim_E, dim_rep))
         print("I am Multi-way model, dim is {} and {} layered".format(

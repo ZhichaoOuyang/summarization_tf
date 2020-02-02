@@ -9,7 +9,7 @@ class TreeEmbeddingLayer(tf.keras.Model):
     def __init__(self, dim_E, in_vocab):
         super(TreeEmbeddingLayer, self).__init__()
         self.E = tf.get_variable("E", [in_vocab, dim_E], tf.float32,
-                                 initializer=tf.keras.initializers.RandomUniform())
+                                 initializer=tf.keras.initializers.RandomUniform())    # code的ast树词汇表随机初始化
 
     def call(self, x):
         '''x: list of [1,]'''

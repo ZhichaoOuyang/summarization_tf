@@ -47,13 +47,13 @@ checkpoint_dir = "./models/" + name
 
 # set tf eager
 
-tfe = tf.contrib.eager
+# tfe = tf.contrib.eager
 config = tf.ConfigProto(
     gpu_options=tf.GPUOptions(
         visible_device_list=args.gpu))
 # config.gpu_options.allow_growth = True
 session = tf.Session(config=config)
-tf.enable_eager_execution(config=config)
+# tf.enable_eager_execution(config=config)
 os.makedirs("./logs/" + name, exist_ok=True)
 writer = tf.contrib.summary.create_file_writer("./logs/" + name, flush_millis=10000)
 
@@ -72,7 +72,7 @@ trn_x, trn_y_raw = zip(*sorted(trn_data.items()))
 vld_x, vld_y_raw = zip(*sorted(vld_data.items()))
 tst_x, tst_y_raw = zip(*sorted(tst_data.items()))
 
-trn_y = [[nl_w2i[t] if t in nl_w2i.keys() else nl_w2i["<UNK>"] for t in l] for l in trn_y_raw]
+trn_y = [[nl_w2i[t] if t in nl_w2i.keys() else nl_w2i["<UNK>"] for t in l] for l in trn_y_raw]   # 得到nl的one-hot编码
 vld_y = [[nl_w2i[t] if t in nl_w2i.keys() else nl_w2i["<UNK>"] for t in l] for l in vld_y_raw]
 tst_y = [[nl_w2i[t] if t in nl_w2i.keys() else nl_w2i["<UNK>"] for t in l] for l in tst_y_raw]
 
